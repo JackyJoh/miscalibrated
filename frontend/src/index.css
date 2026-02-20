@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────── */
+:root {
+  --background: #1a1f3a;
+  --foreground: #ededed;
+}
+
+/* ─── Base Styles ───────────────────────────────────────────────────────── */
+html {
+  background: #151829;  /* brand-base: the deepest layer, visible in gaps */
+}
+
+body {
+  background: var(--background);   /* brand-bg: main content surface */
+  color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography Utilities ──────────────────────────────────────────────── */
+/* IBM Plex Mono for all headings, labels, and technical text */
+.font-heading {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Tabular figures: forces all digits to same width for aligned number columns */
+.font-tnum {
+  font-feature-settings: 'tnum';
+}
+
+/* ─── Card Depth System ─────────────────────────────────────────────────── */
+/*
+  Creates visual elevation without outward box-shadows.
+  A 1px cyan top border + faint top-down gradient wash simulates
+  light falling on the card from above.
+*/
+.card-glow {
+  position: relative;
+  border-top: 1px solid rgba(34, 211, 238, 0.15);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(34, 211, 238, 0.04) 0%,
+    transparent 40%
+  );
+}
+
+/* ─── Ambient Glow Orbs ─────────────────────────────────────────────────── */
+/*
+  Large, low-opacity radial gradient circles placed behind hero/focal sections.
+  Create a sense of atmospheric depth without busy visuals.
+*/
+.ambient-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Glass Utility (dropdowns, modals) ─────────────────────────────────── */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Interactive Suggestion Rows ───────────────────────────────────────── */
+.suggestion-row {
+  transition: background-color 150ms ease, border-left-color 150ms ease;
+  border-left: 2px solid transparent;
+}
+.suggestion-row:hover {
+  background-color: rgba(34, 211, 238, 0.08);
+  border-left-color: rgba(34, 211, 238, 0.7);
+}
+
+/* ─── Scrollbar Styling ─────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.4);
+}
