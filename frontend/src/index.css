@@ -60,7 +60,7 @@ body {
   border-radius: 9999px;
   background: radial-gradient(
     circle,
-    rgba(34, 211, 238, 0.07) 0%,
+    rgba(34, 211, 238, 0.13) 0%,
     transparent 70%
   );
   pointer-events: none;
@@ -83,6 +83,115 @@ body {
 .suggestion-row:hover {
   background-color: rgba(34, 211, 238, 0.08);
   border-left-color: rgba(34, 211, 238, 0.7);
+}
+
+/* ─── Landing Page Animations ───────────────────────────────────────────── */
+
+/*
+  tickerScroll — drives the horizontal market ticker tape.
+  Items are duplicated in JS so translateX(-50%) lands exactly
+  at the start of the second copy, creating a seamless loop.
+*/
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/*
+  fadeSlideIn — new feed rows slide up + fade in from below.
+  Used on each incoming <FeedRow> when it first appears.
+*/
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+  drawLine — SVG path strokes itself in from left to right on mount.
+  Requires stroke-dasharray + stroke-dashoffset set to a value >= path length.
+*/
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0;    }
+}
+
+/*
+  scanPulse — a faint horizontal glow line sweeps top-to-bottom
+  through the terminal panel periodically, like a radar refresh.
+*/
+@keyframes scanPulse {
+  0%   { transform: translateY(-80px); opacity: 0;   }
+  8%   { opacity: 1;                                  }
+  92%  { opacity: 0.6;                                }
+  100% { transform: translateY(520px);  opacity: 0;   }
+}
+
+/*
+  glowPulse — ambient orbs breathe in and out slowly,
+  creating a sense of atmospheric depth behind the hero.
+*/
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1;   }
+}
+
+/*
+  edgePing — the live-status dot in the terminal header pulses
+  with a subtle ring effect, signaling an active connection.
+*/
+@keyframes edgePing {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 5px rgba(34, 211, 238, 0);
+  }
+}
+
+/* Chart line: animated draw-in on mount (applied to the SVG <path>) */
+.chart-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-out 0.3s forwards;
+}
+
+/* Chart area fill: fades in shortly after the line finishes drawing */
+.chart-area {
+  opacity: 0;
+  animation: fadeSlideIn 1s ease-out 1.5s forwards;
+}
+
+/* Scan pulse overlay — sits over the terminal panel */
+.scan-pulse {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+.scan-pulse::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(34, 211, 238, 0.045),
+    transparent
+  );
+  animation: scanPulse 8s ease-in-out infinite 3s;
 }
 
 /* ─── Scrollbar Styling ─────────────────────────────────────────────────── */

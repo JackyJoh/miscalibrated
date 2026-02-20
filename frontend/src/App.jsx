@@ -12,6 +12,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
+import LandingPage from "./pages/LandingPage.jsx";
 import Sidebar from "./components/layout/Sidebar.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Markets from "./pages/Markets.jsx";
@@ -34,9 +35,9 @@ export default function App() {
     );
   }
 
-  // If not authenticated, show a login gate
+  // If not authenticated, show the marketing landing page
   if (!isAuthenticated) {
-    return <LoginGate onLogin={loginWithRedirect} />;
+    return <LandingPage onLogin={loginWithRedirect} />;
   }
 
   // Authenticated: render the full app with sidebar layout
@@ -63,34 +64,4 @@ export default function App() {
   );
 }
 
-/** Simple login gate shown to unauthenticated visitors. */
-function LoginGate({ onLogin }) {
-  return (
-    <div className="min-h-screen bg-[#151829] flex items-center justify-center relative overflow-hidden">
-      {/* Ambient glow orb */}
-      <div className="ambient-glow" style={{ top: "20%", left: "50%", transform: "translateX(-50%)" }} />
 
-      <div className="relative z-10 flex flex-col items-center gap-8 text-center max-w-md px-6">
-        {/* Logo / wordmark */}
-        <div>
-          <h1 className="font-heading font-bold text-3xl text-white tracking-tight">
-            Miscalibrated
-          </h1>
-          <p className="mt-2 text-slate-400 text-sm font-light">
-            Real-time edge detection for prediction markets.
-          </p>
-        </div>
-
-        {/* Login CTA */}
-        <button
-          onClick={() => onLogin()}
-          className="bg-cyan-500 hover:bg-cyan-600 text-white font-heading font-semibold rounded-lg px-8 py-3
-                     shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]
-                     transition-all duration-200"
-        >
-          Sign In
-        </button>
-      </div>
-    </div>
-  );
-}
