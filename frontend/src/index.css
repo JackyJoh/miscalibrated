@@ -1,3 +1,12 @@
+/* ─── Geist Font (loaded from npm package) ──────────────────────────────── */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,7 +33,7 @@ body {
 /* ─── Typography Utilities ──────────────────────────────────────────────── */
 /* IBM Plex Mono for all headings, labels, and technical text */
 .font-heading {
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: "Geist", ui-sans-serif, sans-serif;
 }
 
 /* Tabular figures: forces all digits to same width for aligned number columns */

@@ -125,7 +125,7 @@ function StatCards() {
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-[edgePing_2.4s_ease-in-out_infinite] shrink-0" />
             )}
           </div>
-          <p className="font-heading text-[9px] text-slate-600 mt-1">{s.sub}</p>
+          <p className="text-[9px] text-slate-600 mt-1">{s.sub}</p>
         </div>
       ))}
     </div>
@@ -153,9 +153,9 @@ function TopSignalsPanel() {
           <span className="font-heading text-[10px] text-slate-400 uppercase tracking-wider">
             Top Signals
           </span>
-          <span className="font-heading text-[9px] text-slate-600">— right now</span>
+          <span className="text-[9px] text-slate-600">— right now</span>
         </div>
-        <span className="font-heading text-[9px] text-slate-600 uppercase tracking-widest">
+        <span className="text-[9px] text-slate-600 uppercase tracking-widest">
           3 found
         </span>
       </div>
@@ -433,7 +433,7 @@ export default function LandingPage({ onLogin }) {
             <div className="flex flex-col gap-5">
 
               {/* System status line */}
-              <div className="flex items-center gap-3 font-heading text-[10px]">
+              <div className="flex items-center gap-3 text-[10px]">
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-[edgePing_2s_ease-in-out_infinite]" />
                   <span className="text-emerald-400/80 uppercase tracking-wider">System Active</span>
@@ -473,17 +473,26 @@ export default function LandingPage({ onLogin }) {
               <div>
                 <button
                   onClick={onLogin}
-                  className="font-heading text-[13px] uppercase tracking-wider bg-cyan-500 hover:bg-cyan-400
-                             text-white rounded-lg px-8 py-3 transition-all duration-150
-                             shadow-[0_0_12px_rgba(34,211,238,0.08)]
-                             hover:shadow-[0_0_14px_rgba(34,211,238,0.12)]"
+                  className="group font-heading text-[13px] uppercase tracking-wider
+                             bg-gradient-to-br from-cyan-300 to-cyan-500
+                             hover:from-cyan-200 hover:to-cyan-400
+                             text-slate-900 font-semibold
+                             rounded-lg px-8 py-3
+                             transition-all duration-200
+                             shadow-[0_1px_0_rgba(255,255,255,0.3)_inset,0_-2px_0_rgba(0,0,0,0.18)_inset,0_6px_16px_rgba(0,0,0,0.4),0_0_20px_rgba(34,211,238,0.16)]
+                             hover:shadow-[0_1px_0_rgba(255,255,255,0.35)_inset,0_-2px_0_rgba(0,0,0,0.18)_inset,0_8px_24px_rgba(0,0,0,0.45),0_0_28px_rgba(34,211,238,0.22)]
+                             hover:-translate-y-0.5
+                             active:translate-y-px active:brightness-95"
                 >
-                  Get Early Access
+                  <span className="flex items-center gap-2">
+                    Get Early Access
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+                  </span>
                 </button>
               </div>
 
               {/* Footer stat strip */}
-              <div className="flex items-center gap-3 font-heading text-xs text-slate-600">
+              <div className="flex items-center gap-3 text-xs text-slate-600">
                 <span>3 platforms</span>
                 <span className="text-slate-700">·</span>
                 <span>Real-time</span>

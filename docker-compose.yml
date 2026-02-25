@@ -1,0 +1,11 @@
+services:
+  api:
+    build: ./backend
+    container_name: miscalibrated_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app   # hot reload — code changes reflect immediately
+    env_file:
+      - ./backend/.env
